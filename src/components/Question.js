@@ -1,23 +1,31 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
+import QuestionCard from './QuestionCard';
+import '../styles/App.css';
 
 //* Fetch data from trivia api
-export default class Question extends Component {
+const Question = (props) => {
 
-    handleSubmit = async (event) => {
-        event.preventDefault();
-        const resp = await fetch(`https://opentdb.com/api.php?amount=50&type=multiple`);
-        const data = await resp.json();
-        console.log(data)
-        // this.props.onSubmit(resp.data);
-        // this.setState({ });
-    };
+    const [oneQuestion, setOneQuestion] = useState([]);
+    const [questionNumber, setQuestionNumber] = useState(0);
 
-    render() {
-        return (
-            <div>
-                <button onClick={this.handleSubmit}>Click</button>
-            </div>
-        );
+    const getQuestion = () => {
+        console.log(props.questions[questionNumber])
+        setOneQuestion(props.questions[questionNumber])
+        setQuestionNumber(questionNumber + 1)
     }
-    
+
+    return (
+        <div className="Question">
+            <QuestionCard questionObject={oneQuestion}/>
+            <br/><br/><br/>
+            <button onClick={ () => {
+                props.onClick()
+                getQuestion()
+            }}>
+                {props.started ? 'Next Question' : 'Begin'}
+            </button>
+        </div>
+    );
 }
+
+export default Question;
