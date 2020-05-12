@@ -8,7 +8,7 @@ import '../styles/App.css';
 
 export default class App extends Component {
 
-  state = { isLoaded: false, error: null, started: false, questions: [] }
+  state = { error: null, started: false, triviaData: '', triviaIndex: 0 }
 
   componentDidMount = () => {
     fetch("https://opentdb.com/api.php?amount=50&type=multiple")
@@ -17,17 +17,24 @@ export default class App extends Component {
         (result) => {
           const data = result.results
           this.setState({
-            isLoaded: true,
-            questions: data
+            triviaData: data
           });
         },
         (error) => {
           this.setState({
-            isLoaded: true,
-            error
+            error : error
           });
         }
       )
+  }
+
+  handleClick = () => {
+    if(!this.state.started){
+      this.begin()
+    }
+    this.setState({
+      triviaIndex: this.triviaIndex + 1
+    })
   }
 
   begin = () => {
@@ -46,8 +53,8 @@ export default class App extends Component {
             Record score here!
           </Grid.Column>
           <Grid.Column width={8}>
-            Display Question here!
-            <Question onClick={this.begin} started={this.state.started} questions={this.state.questions} />
+            Welcome to Trivia!
+            <Question onClick={this.handleClick} started={this.state.started} questions={this.state.triviaData} />
           </Grid.Column>
           <Grid.Column width={4}>
             <Image src={logo} className="App-logo" alt="logo" />
@@ -56,9 +63,7 @@ export default class App extends Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column width={16}>
-            <Answer />
-            <br />
-            Display Answer choices for selection here!
+            <Answer started={this.state.started} triviaData={this.state.triviaData} triviaIndex={this.state.triviaIndex}/>
           </Grid.Column>
         </Grid.Row>
       </Grid >
