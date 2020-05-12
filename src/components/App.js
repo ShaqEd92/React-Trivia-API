@@ -8,7 +8,7 @@ import '../styles/App.css';
 
 export default class App extends Component {
 
-  state = { error: null, started: false, triviaData: '', triviaIndex: 0 }
+  state = { error: null, started: false, triviaData: '', triviaIndex: -1 }
 
   componentDidMount = () => {
     fetch("https://opentdb.com/api.php?amount=50&type=multiple")
@@ -22,18 +22,18 @@ export default class App extends Component {
         },
         (error) => {
           this.setState({
-            error : error
+            error: error
           });
         }
       )
   }
 
   handleClick = () => {
-    if(!this.state.started){
+    if (!this.state.started) {
       this.begin()
     }
     this.setState({
-      triviaIndex: this.triviaIndex + 1
+      triviaIndex: this.state.triviaIndex + 1
     })
   }
 
@@ -41,6 +41,11 @@ export default class App extends Component {
     this.setState({
       started: true
     })
+  }
+
+  answerQuestion = (check) => {
+    check ? console.log('Correct!') : console.log('Incorrect')
+    this.handleClick();
   }
 
   render() {
@@ -54,7 +59,8 @@ export default class App extends Component {
           </Grid.Column>
           <Grid.Column width={8}>
             Welcome to Trivia!
-            <Question onClick={this.handleClick} started={this.state.started} questions={this.state.triviaData} />
+            <Question onClick={this.handleClick} started={this.state.started} triviaData={this.state.triviaData}
+              triviaIndex={this.state.triviaIndex} />
           </Grid.Column>
           <Grid.Column width={4}>
             <Image src={logo} className="App-logo" alt="logo" />
@@ -63,7 +69,7 @@ export default class App extends Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column width={16}>
-            <Answer started={this.state.started} triviaData={this.state.triviaData} triviaIndex={this.state.triviaIndex}/>
+            <Answer started={this.state.started} triviaData={this.state.triviaData} triviaIndex={this.state.triviaIndex} answerQuestion={this.answerQuestion} />
           </Grid.Column>
         </Grid.Row>
       </Grid >

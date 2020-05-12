@@ -93,3 +93,16 @@ button:hover{
 button:active {
   box-shadow: 0 5px #1C1018;
 }
+
+.answers{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5% 5% 0 5%;
+}
+
+.answers button{
+  color: #094D92;
+  border: 2px solid #094D92;
+  background-color: #1C1018;
+  padding: 2%;
+}
