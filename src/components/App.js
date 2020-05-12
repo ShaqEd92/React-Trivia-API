@@ -8,7 +8,13 @@ import '../styles/App.css';
 
 export default class App extends Component {
 
-  state = { error: null, started: false, triviaData: '', triviaIndex: -1 }
+  state = {
+    error: null,
+    started: false,
+    triviaData: '',
+    triviaIndex: -1,
+    updateScore: false
+  }
 
   componentDidMount = () => {
     fetch("https://opentdb.com/api.php?amount=50&type=multiple")
@@ -44,7 +50,9 @@ export default class App extends Component {
   }
 
   answerQuestion = (check) => {
-    check ? console.log('Correct!') : console.log('Incorrect')
+    this.setState({
+      updateScore: check
+    })
     this.handleClick();
   }
 
@@ -53,9 +61,7 @@ export default class App extends Component {
       <Grid className="App" celled='internally' style={{ textAlign: 'center', verticalAlign: 'center' }} >
         <Grid.Row>
           <Grid.Column width={4} >
-            <Score />
-            <br />
-            Record score here!
+            <Score updateScore={this.state.updateScore} triviaData={this.state.triviaData} triviaIndex={this.state.triviaIndex}/>
           </Grid.Column>
           <Grid.Column width={8}>
             Welcome to Trivia!

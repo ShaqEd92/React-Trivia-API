@@ -18,9 +18,9 @@ const Question = (props) => {
                 <QuestionCard questionObject={oneQuestion} />
             }
             <br /><br /><br />
-            <button onClick={() => props.onClick()}>
-                {props.started ? 'Next Question' : 'Click to Begin'}
-            </button>
+            {!props.started &&
+                <button onClick={() => props.onClick()}>Click to Begin</button>
+            }
         </div>
     );
 }
