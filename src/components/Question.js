@@ -10,7 +10,7 @@ const Question = (props) => {
         if (props.triviaData && props.triviaIndex >= 0) {
             setOneQuestion(props.triviaData[props.triviaIndex])
         }
-    }, [props.triviaData, props.triviaIndex]);
+    }, [props.triviaIndex, props.triviaData]);
 
     return (
         <div className="Question">
@@ -19,7 +19,7 @@ const Question = (props) => {
             }
             <br /><br /><br />
             {!props.started &&
-                <button onClick={() => props.onClick()}>Click to Begin</button>
+                <button onClick={() => props.onClick()}>Double Click to Begin</button>
             }
         </div>
     );

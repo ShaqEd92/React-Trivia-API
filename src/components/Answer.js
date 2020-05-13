@@ -12,7 +12,7 @@ const Answer = (props) => {
             setRightAnswer(props.triviaData[props.triviaIndex].correct_answer)
             setWrongAnswers(props.triviaData[props.triviaIndex].incorrect_answers)
         }
-    }, [props.triviaData, props.triviaIndex]);
+    }, [props.triviaIndex, props.triviaData]);
 
     const escapeHTML = (str) => {
         if (str != null) {

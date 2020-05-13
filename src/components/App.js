@@ -16,6 +16,12 @@ export default class App extends Component {
     updateScore: false
   }
 
+  commonProps = {
+    started: this.state.started,
+    triviaData: this.state.triviaData,
+    triviaIndex: this.state.triviaIndex,
+  }
+
   componentDidMount = () => {
     fetch("https://opentdb.com/api.php?amount=50&type=multiple")
       .then(res => res.json())
@@ -34,6 +40,14 @@ export default class App extends Component {
       )
   }
 
+  componentDidUpdate() {
+    this.commonProps = {
+      started: this.state.started,
+      triviaData: this.state.triviaData,
+      triviaIndex: this.state.triviaIndex,
+    }
+  }
+
   handleClick = () => {
     if (!this.state.started) {
       this.begin()
@@ -47,6 +61,7 @@ export default class App extends Component {
     this.setState({
       started: true
     })
+    this.componentDidUpdate();
   }
 
   answerQuestion = (check) => {
@@ -61,12 +76,11 @@ export default class App extends Component {
       <Grid className="App" celled='internally' style={{ textAlign: 'center', verticalAlign: 'center' }} >
         <Grid.Row>
           <Grid.Column width={4} >
-            <Score updateScore={this.state.updateScore} triviaData={this.state.triviaData} triviaIndex={this.state.triviaIndex}/>
+            <Score {...this.commonProps} updateScore={this.state.updateScore} />
           </Grid.Column>
           <Grid.Column width={8}>
             Welcome to Trivia!
-            <Question onClick={this.handleClick} started={this.state.started} triviaData={this.state.triviaData}
-              triviaIndex={this.state.triviaIndex} />
+            <Question {...this.commonProps} onClick={this.handleClick} />
           </Grid.Column>
           <Grid.Column width={4}>
             <Image src={logo} className="App-logo" alt="logo" />
@@ -75,7 +89,7 @@ export default class App extends Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column width={16}>
-            <Answer started={this.state.started} triviaData={this.state.triviaData} triviaIndex={this.state.triviaIndex} answerQuestion={this.answerQuestion} />
+            <Answer {...this.commonProps} answerQuestion={this.answerQuestion} />
           </Grid.Column>
         </Grid.Row>
       </Grid >

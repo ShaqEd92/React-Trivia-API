@@ -5,6 +5,7 @@ const Score = (props) => {
 
     const [difficulty, setDifficulty] = useState('');
     const [score, setScore] = useState(0);
+    const [userFeedback, setUserFeedback] = useState('');
 
     const scoreValues = {
         'easy': 5,
@@ -12,28 +13,37 @@ const Score = (props) => {
         'hard': 15
     }
 
+    const flashResult = () => {
+        if (props.triviaIndex > 0) {
+            props.updateScore ? setUserFeedback('Correct!') : setUserFeedback('Wrong!');
+            setInterval(() => {
+                setUserFeedback('')
+            }, 1500)
+        }
+    }
+
     useEffect(() => {
         if (props.triviaData && props.triviaIndex >= 0) {
             setDifficulty(props.triviaData[props.triviaIndex].difficulty)
         }
-    }, [props.triviaData, props.triviaIndex]);
+    }, [props.triviaIndex, props.triviaData]);
 
     useEffect(() => {
-        console.log(`UpdateScore is currently ${props.updateScore}`)
         if (props.updateScore) {
             let val = difficulty;
-            setScore(score + scoreValues[val])
+            setScore(s => s + scoreValues[val])
         }
+        flashResult();
     }, [props.triviaIndex, props.updateScore]);
 
-    {
-        return (
-            <div>
-                <h1>Score</h1>
-                <h2>{score}</h2>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <h1>Score</h1>
+            <h2>{score}</h2>
+            <br />
+            <h3>{userFeedback}</h3>
+        </div>
+    )
 }
 
 export default Score 
