@@ -16,9 +16,10 @@ const Score = (props) => {
     const flashResult = () => {
         if (props.triviaIndex > 0) {
             props.updateScore ? setUserFeedback('Correct!') : setUserFeedback('Wrong!');
-            setInterval(() => {
+            setTimeout(() => {
+                clearTimeout()
                 setUserFeedback('')
-            }, 1500)
+            }, 2500)
         }
     }
 
