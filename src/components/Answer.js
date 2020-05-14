@@ -27,11 +27,9 @@ const Answer = (props) => {
     const checkAnswer = (ans) => {
         let selected = ans;
         if (selected === rightAnswer) {
-            console.log('Correct!')
             return true
         }
         else {
-            console.log('Wrong!')
             return false
         }
     }
