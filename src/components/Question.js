@@ -19,7 +19,7 @@ const Question = (props) => {
             }
             <br /><br /><br />
             {!props.started &&
-                <button onClick={() => props.onClick()}>Double Click to Begin</button>
+                <button onClick={() => props.onClick()}>Click to Begin</button>
             }
         </div>
     );
