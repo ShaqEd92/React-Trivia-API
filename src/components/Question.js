@@ -7,9 +7,7 @@ const Question = (props) => {
     const [oneQuestion, setOneQuestion] = useState([]);
 
     useEffect(() => {
-        if (props.triviaData && props.triviaIndex >= 0) {
-            setOneQuestion(props.triviaData[props.triviaIndex])
-        }
+        if (props.triviaData && props.triviaIndex >= 0) setOneQuestion(props.triviaData[props.triviaIndex]);
     }, [props.triviaIndex, props.triviaData]);
 
     return (
@@ -18,7 +16,7 @@ const Question = (props) => {
                 <QuestionCard questionObject={oneQuestion} />
             }
             <br /><br /><br />
-            {!props.started &&
+            {(!props.started && !props.gameDone) &&
                 <button onClick={() => props.onClick()}>Click to Begin</button>
             }
         </div>

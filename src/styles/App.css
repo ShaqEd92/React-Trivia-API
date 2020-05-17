@@ -72,6 +72,7 @@ button{
   background-color: #95E06C;
   border: 2px solid #68B684;
   border-radius: 12%;
+  min-width: 15%;
 
   position: relative;
   bottom: 5%;

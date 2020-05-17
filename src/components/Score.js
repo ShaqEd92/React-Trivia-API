@@ -24,22 +24,17 @@ const Score = (props) => {
     }
 
     useEffect(() => {
-        if (props.triviaData && props.triviaIndex >= 0) {
-            setDifficulty(props.triviaData[props.triviaIndex].difficulty)
-        }
+        if (props.triviaData && props.triviaIndex >= 0) setDifficulty(props.triviaData[props.triviaIndex].difficulty);
     }, [props.triviaIndex, props.triviaData]);
 
     useEffect(() => {
-        if (props.updateScore) {
-            let val = difficulty;
-            setScore(s => s + scoreValues[val])
-        }
+        if (props.updateScore) setScore(s => s + scoreValues[difficulty]);
         flashResult();
     }, [props.triviaIndex, props.updateScore]);
 
     return (
         <div>
-            <h1>Score</h1>
+            <h1>{props.gameDone ? 'Final ' : ''}Score</h1>
             <h2>{score}</h2>
             <br />
             <h3>{userFeedback}</h3>

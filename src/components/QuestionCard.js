@@ -6,7 +6,7 @@ import '../styles/App.css';
 const QuestionCard = (props) => {
 
     const escapeHTML = (str) => {
-        if (str != null){
+        if (str != null) {
             return str.replace(/&(#|q|a)(\w+);/g, function (match, dec) {
                 return String.fromCharCode(dec);
             });

@@ -5,12 +5,13 @@ import '../styles/App.css';
 const Answer = (props) => {
 
     const [rightAnswer, setRightAnswer] = useState('');
-    const [wrongAnswers, setWrongAnswers] = useState([]);
+    const [allAnswers, setAllAnswers] = useState([]);
 
     useEffect(() => {
         if (props.triviaData && props.triviaIndex >= 0) {
             setRightAnswer(props.triviaData[props.triviaIndex].correct_answer)
-            setWrongAnswers(props.triviaData[props.triviaIndex].incorrect_answers)
+            let answers = [...props.triviaData[props.triviaIndex].incorrect_answers, props.triviaData[props.triviaIndex].correct_answer];
+            setAllAnswers(shuffle.shuffle(answers))
         }
     }, [props.triviaIndex, props.triviaData]);
 
@@ -22,19 +23,9 @@ const Answer = (props) => {
         }
     }
 
-    const allAnswers = [...wrongAnswers, rightAnswer]
+    const checkAnswer = (answer) => { return (answer === rightAnswer) }
 
-    const checkAnswer = (ans) => {
-        let selected = ans;
-        if (selected === rightAnswer) {
-            return true
-        }
-        else {
-            return false
-        }
-    }
-
-    const shuffledAnswers = shuffle(allAnswers).map((ans, key) => (
+    const shuffledAnswers = allAnswers.map((ans, key) => (
         <button key={key} onClick={() => {
             props.answerQuestion(checkAnswer(ans))
         }}>
@@ -45,8 +36,9 @@ const Answer = (props) => {
         <Fragment>
             {props.started &&
                 <div className='answers'>
-                    {shuffledAnswers}
-                    <p></p>
+                    { (!props.gameDone) &&
+                        shuffledAnswers
+                    }
                 </div>
             }
         </Fragment>
