@@ -38,7 +38,7 @@ const Score = (props) => {
             <h2>{score}</h2>
             <br />
             <h3>{userFeedback}</h3>
-            { (userFeedback && userFeedback == 'Wrong!') ?
+            { (userFeedback && userFeedback === 'Wrong!') ?
                 <div>
                     <br/>
                     <h4 style={{textDecoration: 'underline'}}>Correct Answer</h4>

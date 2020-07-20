@@ -31,7 +31,7 @@ const Game = (props) => {
   }
 
   useEffect(() => {
-    if (triviaData.length == 0) fetchData();
+    if (triviaData.length === 0) fetchData();
     if (secondsLeft < 0) setStarted(false);
   })
 
@@ -55,7 +55,7 @@ const Game = (props) => {
   const answerQuestion = (check) => {
     setUpdateScore(check);
     if (triviaIndex <= 44) handleClick();
-    if (triviaIndex == 44) {
+    if (triviaIndex === 44) {
       setGameDone(true);
       setStarted(false);
     }
