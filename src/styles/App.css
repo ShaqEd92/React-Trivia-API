@@ -1,10 +1,10 @@
 /*! Color Pallette */
-#colorPallette{
-  color: #C3F73A;
-  color: #95E06C;
-  color: #68B684;
-  color: #094D92;
-  color: #1C1018;
+#colorPallette {
+  color: #c3f73a;
+  color: #95e06c;
+  color: #68b684;
+  color: #094d92;
+  color: #1c1018;
 }
 
 body {
@@ -15,19 +15,19 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .App {
-  background-color: #094D92;
+  background-color: #094d92;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #C3F73A;
+  color: #c3f73a;
 }
 
 .App-logo {
@@ -51,7 +51,7 @@ code {
   }
 }
 
-.QuestionCard{
+.QuestionCard {
   margin: 0;
   position: fixed;
   top: 50%;
@@ -59,18 +59,18 @@ code {
   transform: translate(-50%, 15%);
 }
 
-.ui.card>.content,
-.ui.cards>.card>.content {
-  background-color: #68B684;
-  color: #C3F73A;
-  border: 0.5px solid #C3F73A;
+.ui.card > .content,
+.ui.cards > .card > .content {
+  background-color: #68b684;
+  color: #c3f73a;
+  border: 0.5px solid #c3f73a;
 }
 
-button{
+button {
   outline-style: none;
-  color: #1C1018;
-  background-color: #95E06C;
-  border: 2px solid #68B684;
+  color: #1c1018;
+  background-color: #95e06c;
+  border: 2px solid #68b684;
   border-radius: 12%;
   min-width: 15%;
 
@@ -80,30 +80,30 @@ button{
   transform: translate(-0%, -50%);
 }
 
-button:hover{
+button:hover {
   background-image: -moz-none;
   background-image: -webkit-none;
   background-image: -webkit-none;
   background-image: -o-none;
-  background-image:none;
-  background-color: #C3F73A;
-  color: #094D92;
-  box-shadow: 5px 5px 5px #1C1018;
+  background-image: none;
+  background-color: #c3f73a;
+  color: #094d92;
+  box-shadow: 5px 5px 5px #1c1018;
 }
 
 button:active {
-  box-shadow: 0 5px #1C1018;
+  box-shadow: 0 5px #1c1018;
 }
 
-.answers{
+.answers {
   display: flex;
   justify-content: space-evenly;
   padding: 5% 5% 0 5%;
 }
 
-.answers button{
-  color: #094D92;
-  border: 2px solid #094D92;
-  background-color: #1C1018;
+.answers button {
+  color: #094d92;
+  border: 2px solid #094d92;
+  background-color: #1c1018;
   padding: 2%;
 }
